@@ -13,6 +13,7 @@
 #          without specific prior written permission.
 #
 #    See <http://www.opensource.org/licenses/bsd-license>
+from os.path import abspath, dirname, join
 import cv2
 # cv2 helper
 from helper.common import *
@@ -36,8 +37,10 @@ Keys:
   ESC   - exit
 '''
 
+curpath = abspath(dirname(__file__))
+
 class App(object):
-	def __init__(self, video_src, dataset_fn, face_sz=(130,130), cascade_fn="/home/philipp/projects/opencv2/OpenCV-2.3.1/data/haarcascades/haarcascade_frontalface_alt2.xml"):
+	def __init__(self, video_src, dataset_fn, face_sz=(130,130), cascade_fn=join(curpath, 'haarcascade_frontalface_alt2.xml')):
 		self.face_sz = face_sz
 		self.cam = create_capture(video_src)
 		ret, self.frame = self.cam.read()
